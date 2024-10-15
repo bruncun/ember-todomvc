@@ -5,6 +5,6 @@ module.exports = {
   rules: {
     'no-autofocus-attribute': 'off',
     'require-input-label': 'off',
-    'no-duplicate-landmark-elements': 'off'
+    'no-duplicate-landmark-elements': 'off',
   },
 };
