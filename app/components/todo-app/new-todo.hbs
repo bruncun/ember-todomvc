@@ -1,0 +1,8 @@
+<input
+  class="new-todo"
+  placeholder="What needs to be done?"
+  autofocus
+  value={{this.text}}
+  {{on "keydown" this.addNewTodo}}
+  {{on "input" this.updateText}}
+/>
