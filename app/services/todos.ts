@@ -7,6 +7,11 @@ export interface Todo {
   isCompleted: boolean;
 }
 
+interface TodoUpdate {
+  id: string;
+  changes: Partial<Todo>;
+}
+
 type TodoAttributes = Pick<Todo, 'text' | 'isCompleted'> & {
   id?: string;
 };
@@ -21,6 +26,14 @@ export default class TodosService extends Service {
   createRecord(attrs: TodoAttributes) {
     const id = attrs.id ?? self.crypto.randomUUID();
     this.data.set(id, new TrackedObject({ id, ...attrs }));
+  }
+
+  updateMany(updates: TodoUpdate[]) {
+    updates.forEach(({ id, changes }) => {
+      const todo = this.data.get(id);
+      if (!todo) return null;
+      this.data.set(id, new TrackedObject({ ...todo, ...changes }));
+    });
   }
 }
 

@@ -1,0 +1,26 @@
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-todomvc/tests/helpers';
+import { render } from '@ember/test-helpers';
+import { hbs } from 'ember-cli-htmlbars';
+import setMockTodos from 'ember-todomvc/tests/helpers/set-mock-todos';
+import type { Context } from 'ember-todomvc/tests/helpers/types';
+
+module('Integration | Component | todo-app/toggle-all', function (hooks) {
+  setupRenderingTest(hooks);
+
+  test('its synced with when all todos are completed', async function (this: Context, assert) {
+    setMockTodos(this);
+
+    await render<Context>(
+      hbs`<TodoApp::ToggleAll @isAllTodosCompleted={{true}} @todos={{this.todos}} />`,
+    );
+
+    assert.dom('.toggle-all').isChecked();
+
+    await render<Context>(
+      hbs`<TodoApp::ToggleAll @isAllTodosCompleted={{false}} @todos={{this.todos}} />`,
+    );
+
+    assert.dom('.toggle-all').isNotChecked();
+  });
+});
