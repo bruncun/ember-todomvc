@@ -41,4 +41,13 @@ module('Unit | Service | todos', function (hooks) {
 
     assert.true(isAllTodosCompleted);
   });
+
+  test('it deletes many todos', function (this: Context, assert) {
+    todos.createRecord(newTodo);
+    todos.createRecord({ id: '2', text: 'Make breakfast', isCompleted: false });
+
+    todos.deleteMany(['1', '2']);
+
+    assert.strictEqual(todos.findAll.length, 0);
+  });
 });

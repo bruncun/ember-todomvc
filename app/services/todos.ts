@@ -35,6 +35,12 @@ export default class TodosService extends Service {
       this.data.set(id, new TrackedObject({ ...todo, ...changes }));
     });
   }
+
+  deleteMany(ids: string[]) {
+    ids.forEach((id) => {
+      this.data.delete(id);
+    });
+  }
 }
 
 // Don't remove this declaration: this is what enables TypeScript to resolve

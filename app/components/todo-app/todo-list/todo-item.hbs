@@ -1,0 +1,13 @@
+<li class="{{if @todo.isCompleted 'completed'}} {{if @isEditing 'editing'}}">
+  <div class="view">
+    <input
+      class="toggle"
+      type="checkbox"
+      checked={{@todo.isCompleted}}
+      {{on "change" this.toggleComplete}}
+    />
+    <label {{ on "dblclick" this.toggleEditing }}>{{@todo.text}}</label>
+    <button class="destroy" type="button" {{ on 'click' this.delete}}></button>
+  </div>
+  <input class="edit" value={{@todo.text}} />
+</li>

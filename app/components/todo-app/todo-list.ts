@@ -1,7 +1,7 @@
-import templateOnly, {
-  type TemplateOnlyComponent,
-} from '@ember/component/template-only';
+import { action } from '@ember/object';
+import Component from '@glimmer/component';
 import type { Todo } from 'ember-todomvc/services/todos';
+import { tracked } from 'tracked-built-ins';
 
 export interface TodoAppTodoListSignature {
   Args: {
@@ -9,8 +9,14 @@ export interface TodoAppTodoListSignature {
   };
 }
 
-let TodoAppTodoList: TemplateOnlyComponent<TodoAppTodoListSignature>;
-export default TodoAppTodoList = templateOnly();
+export default class TodoAppTodoList extends Component<TodoAppTodoListSignature> {
+  @tracked editing: null | string = null;
+
+  @action
+  toggleEditing(id: string) {
+    this.editing = id;
+  }
+}
 
 declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry {
