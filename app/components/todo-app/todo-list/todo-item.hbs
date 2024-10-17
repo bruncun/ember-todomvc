@@ -6,8 +6,15 @@
       checked={{@todo.isCompleted}}
       {{on "change" this.toggleComplete}}
     />
-    <label {{ on "dblclick" this.toggleEditing }}>{{@todo.text}}</label>
-    <button class="destroy" type="button" {{ on 'click' this.delete}}></button>
+    <label {{on "dblclick" this.toggleEditing}}>{{@todo.text}}</label>
+    <button class="destroy" type="button" {{on "click" this.delete}}></button>
   </div>
-  <input class="edit" value={{@todo.text}} />
+  <input
+    class="edit"
+    value={{this.newText}}
+    {{focus-when @isEditing}}
+    {{on "keydown" this.handleKeydown}}
+    {{on "blur" this.edit}}
+    {{on "input" this.updateNewText}}
+  />
 </li>

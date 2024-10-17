@@ -13,8 +13,8 @@ export default class TodoAppTodoList extends Component<TodoAppTodoListSignature>
   @tracked editing: null | string = null;
 
   @action
-  toggleEditing(id: string) {
-    this.editing = id;
+  toggleEditing(id?: string) {
+    this.editing = id ?? null;
   }
 }
 
