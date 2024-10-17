@@ -13,5 +13,6 @@ module('Acceptance | new todo', function (hooks) {
 
     assert.dom('.todo-list li').exists({ count: 1 });
     assert.dom('.todo-list li').hasText('Taste JavaScript');
+    assert.dom('.todo-count').hasText('1 item left');
   });
 });
