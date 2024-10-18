@@ -28,8 +28,10 @@
           <a href="#/completed">Completed</a>
         </li>
       </ul>
-      {{! Hidden if no completed items are left ↓ }}
-      <button class="clear-completed" type="button">Clear completed</button>
+       {{! Hidden if no completed items are left ↓ }}
+      {{#unless this.isCompletedTodosEmpty}}
+        <TodoApp::ClearCompleted @todos={{@todos}} />
+      {{/unless}}
     </footer>
   {{/unless}}
 </section>

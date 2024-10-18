@@ -18,6 +18,12 @@ export default class TodoApp extends Component<TodoAppSignature> {
     );
     return isAllTodosCompleted;
   }
+  get isCompletedTodosEmpty() {
+    const completedTodos = this.args.todos.filter(
+      ({ isCompleted }) => isCompleted,
+    );
+    return completedTodos.length === 0;
+  }
 }
 
 declare module '@glint/environment-ember-loose/registry' {
