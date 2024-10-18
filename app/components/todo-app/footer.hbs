@@ -1,0 +1,23 @@
+<ul class="filters">
+  <li>
+    <LinkTo
+      @route="index"
+      @query={{hash filter="all"}}
+      class={{if (eq @filter "all") "selected"}}
+    >All</LinkTo>
+  </li>
+  <li>
+    <LinkTo
+      @route="index"
+      @query={{hash filter="active"}}
+      class={{if (eq @filter "active") "selected"}}
+    >Active</LinkTo>
+  </li>
+  <li>
+    <LinkTo
+      @route="index"
+      @query={{hash filter="completed"}}
+      class={{if (eq @filter "completed") "selected"}}
+    >Completed</LinkTo>
+  </li>
+</ul>

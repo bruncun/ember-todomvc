@@ -17,18 +17,8 @@
       {{! This should be `0 items left` by default }}
       <TodoApp::TodoCount @todos={{@todos}} />
       {{! Remove this if you don't implement routing }}
-      <ul class="filters">
-        <li>
-          <a class="selected" href="#/">All</a>
-        </li>
-        <li>
-          <a href="#/active">Active</a>
-        </li>
-        <li>
-          <a href="#/completed">Completed</a>
-        </li>
-      </ul>
-       {{! Hidden if no completed items are left ↓ }}
+      <TodoApp::Footer @filter={{@filter}} />
+      {{! Hidden if no completed items are left ↓ }}
       {{#unless this.isCompletedTodosEmpty}}
         <TodoApp::ClearCompleted @todos={{@todos}} />
       {{/unless}}

@@ -1,10 +1,12 @@
 import Component from '@glimmer/component';
 import type { Todo } from 'ember-todomvc/services/todos';
+import type { Filter } from 'ember-todomvc/controllers';
 
 export interface TodoAppSignature {
   // The arguments accepted by the component
   Args: {
     todos: Todo[];
+    filter: Filter;
   };
 }
 
