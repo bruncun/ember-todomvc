@@ -50,4 +50,23 @@ module('Unit | Service | todos', function (hooks) {
 
     assert.strictEqual(todos.findAll.length, 0);
   });
+
+  test('it persists todos to local storage', async function (assert) {
+    todos.createRecord(newTodo);
+
+    const storedTodos = JSON.parse(localStorage.getItem('todos-ember') || '[]');
+
+    assert.strictEqual(storedTodos.length, 1);
+  });
+
+  test('it loads todos from local storage', async function (assert) {
+    localStorage.setItem(
+      'todos-ember',
+      '[{"id":"e2763ae9-0456-451f-9a8f-4e346e02c5c3","text":"foo","isCompleted":false}]',
+    );
+
+    todos.load();
+
+    assert.strictEqual(todos.findAll.length, 1);
+  });
 });

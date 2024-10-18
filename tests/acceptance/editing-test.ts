@@ -7,9 +7,12 @@ import {
 } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-todomvc/tests/helpers';
 import addTodo from '../helpers/add-todo';
+import clearLocalStorage from '../helpers/clear-local-storage';
 
 module('Acceptance | editing', function (hooks) {
   setupApplicationTest(hooks);
+
+  hooks.beforeEach(clearLocalStorage);
 
   test('it saves edits on enter', async function (assert) {
     await visit('/');

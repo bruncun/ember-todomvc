@@ -2,9 +2,12 @@ import { module, test } from 'qunit';
 import { visit, click } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-todomvc/tests/helpers';
 import addTodo from '../helpers/add-todo';
+import clearLocalStorage from '../helpers/clear-local-storage';
 
 module('Acceptance | item interactions', function (hooks) {
   setupApplicationTest(hooks);
+
+  hooks.beforeEach(clearLocalStorage);
 
   test('it toggles individual items complete', async function (assert) {
     await visit('/');

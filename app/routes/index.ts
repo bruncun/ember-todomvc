@@ -6,6 +6,10 @@ import type TodosService from 'ember-todomvc/services/todos';
 export default class IndexRoute extends Route {
   @service declare todos: TodosService;
 
+  beforeModel() {
+    this.todos.load();
+  }
+
   model() {
     const todosService = this.todos;
 

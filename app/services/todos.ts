@@ -26,6 +26,7 @@ export default class TodosService extends Service {
   createRecord(attrs: TodoAttributes) {
     const id = attrs.id ?? self.crypto.randomUUID();
     this.data.set(id, new TrackedObject({ id, ...attrs }));
+    this.save();
   }
 
   updateMany(updates: TodoUpdate[]) {
@@ -34,12 +35,30 @@ export default class TodosService extends Service {
       if (!todo) return null;
       this.data.set(id, new TrackedObject({ ...todo, ...changes }));
     });
+    this.save();
   }
 
   deleteMany(ids: string[]) {
     ids.forEach((id) => {
       this.data.delete(id);
     });
+    this.save();
+  }
+
+  load() {
+    const todos = JSON.parse(
+      localStorage.getItem('todos-ember') || '[]',
+    ) as Todo[];
+    const newData = todos.reduce((acc, cur) => {
+      acc.set(cur.id, new TrackedObject({ ...cur }));
+      return acc;
+    }, new TrackedMap<string, Todo>());
+
+    this.data = newData;
+  }
+
+  save() {
+    localStorage.setItem('todos-ember', JSON.stringify(this.findAll));
   }
 }
 
