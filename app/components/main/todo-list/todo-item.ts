@@ -1,8 +1,7 @@
 import { assert } from '@ember/debug';
 import { action } from '@ember/object';
-import { service } from '@ember/service';
 import Component from '@glimmer/component';
-import type TodosService from 'ember-todomvc/services/todos';
+import type TodoApp from 'ember-todomvc/components/todo-app';
 import type { Todo } from 'ember-todomvc/services/todos';
 import { tracked } from 'tracked-built-ins';
 
@@ -12,11 +11,12 @@ export interface MainTodoListTodoItemSignature {
     todo: Todo;
     isEditing?: true;
     toggleEditing: (id?: string) => void;
+    updateTodos: TodoApp['updateTodos'];
+    deleteTodos: TodoApp['deleteTodos'];
   };
 }
 
 export default class MainTodoListTodoItem extends Component<MainTodoListTodoItemSignature> {
-  @service declare todos: TodosService;
   @tracked newText: string = this.args.todo.text;
 
   @action
@@ -46,9 +46,9 @@ export default class MainTodoListTodoItem extends Component<MainTodoListTodoItem
     const text = this.newText.trim();
 
     if (text !== '') {
-      this.todos.updateMany([{ id: this.args.todo.id, changes: { text } }]);
+      this.args.updateTodos([{ id: this.args.todo.id, changes: { text } }]);
     } else {
-      this.todos.deleteMany([this.args.todo.id]);
+      this.args.deleteTodos([this.args.todo.id]);
     }
     this.args.toggleEditing();
   }
@@ -64,7 +64,7 @@ export default class MainTodoListTodoItem extends Component<MainTodoListTodoItem
       'checked' in event.target,
     );
 
-    this.todos.updateMany([
+    this.args.updateTodos([
       {
         id: this.args.todo.id,
         changes: { isCompleted: (event.target as HTMLInputElement).checked },
@@ -74,7 +74,7 @@ export default class MainTodoListTodoItem extends Component<MainTodoListTodoItem
 
   @action
   delete() {
-    this.todos.deleteMany([this.args.todo.id]);
+    this.args.deleteTodos([this.args.todo.id]);
   }
 
   @action

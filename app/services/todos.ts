@@ -7,7 +7,7 @@ export interface Todo {
   isCompleted: boolean;
 }
 
-interface TodoUpdate {
+export interface TodoUpdate {
   id: string;
   changes: Partial<Todo>;
 }

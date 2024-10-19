@@ -1,6 +1,11 @@
 import templateOnly from '@ember/component/template-only';
+import type TodoApp from '../todo-app';
 
-const Header = templateOnly();
+export interface HeaderSignature {
+  addNewTodo: TodoApp['addNewTodo'];
+}
+
+const Header = templateOnly<HeaderSignature>();
 export default Header;
 
 declare module '@glint/environment-ember-loose/registry' {

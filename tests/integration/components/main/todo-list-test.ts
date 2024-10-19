@@ -5,14 +5,21 @@ import { hbs } from 'ember-cli-htmlbars';
 import type { Context } from 'ember-todomvc/tests/helpers/types';
 import setMockTodos from 'ember-todomvc/tests/helpers/set-mock-todos';
 import type { Todo } from 'ember-todomvc/services/todos';
+import Sinon from 'sinon';
 
 module('Integration | Component | main/todo-list', function (hooks) {
   setupRenderingTest(hooks);
 
+  const fn = Sinon.stub();
+
   test('it renders items', async function (this: Context, assert) {
     setMockTodos(this);
+    this.set('updateTodos', fn);
+    this.set('deleteTodos', fn);
 
-    await render<Context>(hbs`<Main::TodoList @todos={{this.todos}} />`);
+    await render<Context>(
+      hbs`<Main::TodoList @todos={{this.todos}} @updateTodos={{this.updateTodos}} @deleteTodos={{this.deleteTodos}}/>`,
+    );
 
     assert.dom('.todo-list li').exists({ count: 2 });
   });
@@ -23,7 +30,9 @@ module('Integration | Component | main/todo-list', function (hooks) {
     ];
     this.set('todos', mockTodo);
 
-    await render<Context>(hbs`<Main::TodoList @todos={{this.todos}} />`);
+    await render<Context>(
+      hbs`<Main::TodoList @todos={{this.todos}} @updateTodos={{this.updateTodos}} @deleteTodos={{this.deleteTodos}}/>`,
+    );
 
     await doubleClick('.todo-list li label');
 

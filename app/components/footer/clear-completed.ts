@@ -1,25 +1,23 @@
 import { action } from '@ember/object';
-import { service } from '@ember/service';
 import Component from '@glimmer/component';
-import type TodosService from 'ember-todomvc/services/todos';
 import type { Todo } from 'ember-todomvc/services/todos';
+import type TodoApp from '../todo-app';
 
 export interface FooterClearCompletedSignature {
   // The arguments accepted by the component
   Args: {
     todos: Todo[];
+    deleteTodos: TodoApp['deleteTodos'];
   };
 }
 
 export default class FooterClearCompleted extends Component<FooterClearCompletedSignature> {
-  @service declare todos: TodosService;
-
   @action
   clearCompleted() {
-    const completedTodoIds = this.todos.findAll
+    const completedTodoIds = this.args.todos
       .filter(({ isCompleted }) => isCompleted)
       .map(({ id }) => id);
-    this.todos.deleteMany(completedTodoIds);
+    this.args.deleteTodos(completedTodoIds);
   }
 }
 

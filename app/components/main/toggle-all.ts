@@ -1,21 +1,19 @@
 import { assert } from '@ember/debug';
 import { action } from '@ember/object';
-import { service } from '@ember/service';
 import Component from '@glimmer/component';
-import type { Todo } from 'ember-todomvc/services/todos';
-import type TodosService from 'ember-todomvc/services/todos';
+import type { Todo, TodoUpdate } from 'ember-todomvc/services/todos';
+import type TodoApp from '../todo-app';
 
 export interface MainToggleAllSignature {
   // The arguments accepted by the component
   Args: {
     isAllTodosCompleted: boolean;
     todos: Todo[];
+    updateTodos: TodoApp['updateTodos'];
   };
 }
 
 export default class MainToggleAll extends Component<MainToggleAllSignature> {
-  @service declare todos: TodosService;
-
   @action
   toggleAllTodos(event: Event) {
     assert(
@@ -27,12 +25,12 @@ export default class MainToggleAll extends Component<MainToggleAllSignature> {
       'checked' in event.target,
     );
 
-    const updates = this.args.todos.map(({ id }) => ({
+    const updates: TodoUpdate[] = this.args.todos.map(({ id }) => ({
       id,
       changes: { isCompleted: (event.target as HTMLInputElement).checked },
     }));
 
-    this.todos.updateMany(updates);
+    this.args.updateTodos(updates);
   }
 }
 

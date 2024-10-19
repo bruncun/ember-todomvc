@@ -1,22 +1,25 @@
 {{page-title "Index"}}
-<Layout @isTodosEmpty={{this.isTodosEmpty}}>
-  <:header>
-    <Header />
+<TodoApp @isTodosEmpty={{this.isTodosEmpty}}>
+  <:header as |actions|>
+    <Header @addNewTodo={{actions.addNewTodo}} />
   </:header>
-  <:main>
+  <:main as |actions|>
     <Main
       @isAllTodosCompleted={{this.isAllTodosCompleted}}
       @todos={{this.filteredTodos}}
+      @updateTodos={{actions.updateTodos}}
+      @deleteTodos={{actions.deleteTodos}}
     />
   </:main>
-  <:footer>
+  <:footer as |actions|>
     <Footer
       @todos={{@model.todos}}
       @filter={{this.filter}}
       @isCompletedTodosEmpty={{this.isCompletedTodosEmpty}}
+      @deleteTodos={{actions.deleteTodos}}
     />
   </:footer>
   <:info>
     <Info />
   </:info>
-</Layout>
+</TodoApp>

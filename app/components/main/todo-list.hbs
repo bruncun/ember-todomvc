@@ -6,6 +6,8 @@
       @todo={{todo}}
       @isEditing={{if (eq this.editing todo.id) true}}
       @toggleEditing={{this.toggleEditing}}
+      @updateTodos={{@updateTodos}}
+      @deleteTodos={{@deleteTodos}}
     />
   {{/each}}
 </ul>

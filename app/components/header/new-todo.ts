@@ -2,11 +2,15 @@ import { action } from '@ember/object';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { assert } from '@ember/debug';
-import { service } from '@ember/service';
-import type TodosService from 'ember-todomvc/services/todos';
+import type TodoApp from '../todo-app';
 
-export default class HeaderNewTodo extends Component {
-  @service declare todos: TodosService;
+export interface HeaderNewTodoSignature {
+  Args: {
+    addNewTodo: TodoApp['addNewTodo'];
+  };
+}
+
+export default class HeaderNewTodo extends Component<HeaderNewTodoSignature> {
   @tracked text: string = '';
 
   @action
@@ -19,7 +23,7 @@ export default class HeaderNewTodo extends Component {
     const text = this.text.trim();
 
     if (event.key === 'Enter' && text !== '') {
-      this.todos.createRecord({ text, isCompleted: false });
+      this.args.addNewTodo({ text, isCompleted: false });
       this.text = '';
     }
   }

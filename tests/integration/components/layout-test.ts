@@ -8,12 +8,12 @@ interface Context extends TestContext {
   isTodosEmpty: boolean;
 }
 
-module('Integration | Component | layout', function (hooks) {
+module('Integration | Component | todo-app', function (hooks) {
   setupRenderingTest(hooks);
 
   test('hides main and footer sections when there are no todos', async function (this: Context, assert) {
     this.set('isTodosEmpty', true);
-    await render<Context>(hbs`<Layout @isTodosEmpty={{this.isTodosEmpty}} />`);
+    await render<Context>(hbs`<TodoApp @isTodosEmpty={{this.isTodosEmpty}} />`);
 
     assert.dom('.main').doesNotExist();
     assert.dom('.footer').doesNotExist();

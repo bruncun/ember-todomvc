@@ -2,10 +2,13 @@ import { action } from '@ember/object';
 import Component from '@glimmer/component';
 import type { Todo } from 'ember-todomvc/services/todos';
 import { tracked } from 'tracked-built-ins';
+import type TodoApp from '../todo-app';
 
 export interface MainTodoListSignature {
   Args: {
     todos: Todo[];
+    updateTodos: TodoApp['updateTodos'];
+    deleteTodos: TodoApp['deleteTodos'];
   };
 }
 

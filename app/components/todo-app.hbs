@@ -1,14 +1,17 @@
 <section class="todoapp">
   <header class="header">
-    {{yield to="header"}}
+    {{yield (hash addNewTodo=this.addNewTodo) to="header"}}
   </header>
   {{#unless @isTodosEmpty}}
     <section class="main">
-      {{yield to="main"}}
+      {{yield
+        (hash updateTodos=this.updateTodos deleteTodos=this.deleteTodos)
+        to="main"
+      }}
     </section>
 
     <footer class="footer">
-      {{yield to="footer"}}
+      {{yield (hash deleteTodos=this.deleteTodos) to="footer"}}
     </footer>
   {{/unless}}
 </section>

@@ -1,12 +1,14 @@
 import templateOnly from '@ember/component/template-only';
 import type { Filter } from 'ember-todomvc/controllers';
 import type { Todo } from 'ember-todomvc/services/todos';
+import type TodoApp from '../todo-app';
 
 interface FooterSignature {
   Args: {
     isCompletedTodosEmpty: boolean;
     filter: Filter;
     todos: Todo[];
+    deleteTodos: TodoApp['deleteTodos'];
   };
 }
 

@@ -1,5 +1,5 @@
 <Footer::TodoCount @todos={{@todos}} />
 <Footer::Filters @filter={{@filter}} />
 {{#unless @isCompletedTodosEmpty}}
-  <Footer::ClearCompleted @todos={{@todos}} />
+  <Footer::ClearCompleted @todos={{@todos}} @deleteTodos={{@deleteTodos}} />
 {{/unless}}

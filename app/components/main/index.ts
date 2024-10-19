@@ -1,10 +1,13 @@
 import templateOnly from '@ember/component/template-only';
 import type { Todo } from 'ember-todomvc/services/todos';
+import type TodoApp from '../todo-app';
 
 interface MainSignature {
   Args: {
     isAllTodosCompleted: boolean;
     todos: Todo[];
+    updateTodos: TodoApp['updateTodos'];
+    deleteTodos: TodoApp['deleteTodos'];
   };
 }
 

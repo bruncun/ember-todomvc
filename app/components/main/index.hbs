@@ -1,5 +1,10 @@
 <Main::ToggleAll
   @isAllTodosCompleted={{@isAllTodosCompleted}}
   @todos={{@todos}}
+  @updateTodos={{@updateTodos}}
 />
-<Main::TodoList @todos={{@todos}} />
+<Main::TodoList
+  @todos={{@todos}}
+  @updateTodos={{@updateTodos}}
+  @deleteTodos={{@deleteTodos}}
+/>
