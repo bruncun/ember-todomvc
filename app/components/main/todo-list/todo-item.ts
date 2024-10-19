@@ -6,7 +6,7 @@ import type TodosService from 'ember-todomvc/services/todos';
 import type { Todo } from 'ember-todomvc/services/todos';
 import { tracked } from 'tracked-built-ins';
 
-export interface TodoAppTodoListTodoItemSignature {
+export interface MainTodoListTodoItemSignature {
   // The arguments accepted by the component
   Args: {
     todo: Todo;
@@ -15,7 +15,7 @@ export interface TodoAppTodoListTodoItemSignature {
   };
 }
 
-export default class TodoAppTodoListTodoItem extends Component<TodoAppTodoListTodoItemSignature> {
+export default class MainTodoListTodoItem extends Component<MainTodoListTodoItemSignature> {
   @service declare todos: TodosService;
   @tracked newText: string = this.args.todo.text;
 
@@ -100,6 +100,6 @@ export default class TodoAppTodoListTodoItem extends Component<TodoAppTodoListTo
 
 declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry {
-    'TodoApp::TodoList::TodoItem': typeof TodoAppTodoListTodoItem;
+    'Main::TodoList::TodoItem': typeof MainTodoListTodoItem;
   }
 }

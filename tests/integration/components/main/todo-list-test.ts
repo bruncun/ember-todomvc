@@ -6,13 +6,13 @@ import type { Context } from 'ember-todomvc/tests/helpers/types';
 import setMockTodos from 'ember-todomvc/tests/helpers/set-mock-todos';
 import type { Todo } from 'ember-todomvc/services/todos';
 
-module('Integration | Component | todo-app/todo-list', function (hooks) {
+module('Integration | Component | main/todo-list', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders items', async function (this: Context, assert) {
     setMockTodos(this);
 
-    await render<Context>(hbs`<TodoApp::TodoList @todos={{this.todos}} />`);
+    await render<Context>(hbs`<Main::TodoList @todos={{this.todos}} />`);
 
     assert.dom('.todo-list li').exists({ count: 2 });
   });
@@ -23,7 +23,7 @@ module('Integration | Component | todo-app/todo-list', function (hooks) {
     ];
     this.set('todos', mockTodo);
 
-    await render<Context>(hbs`<TodoApp::TodoList @todos={{this.todos}} />`);
+    await render<Context>(hbs`<Main::TodoList @todos={{this.todos}} />`);
 
     await doubleClick('.todo-list li label');
 

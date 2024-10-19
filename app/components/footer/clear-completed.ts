@@ -4,14 +4,14 @@ import Component from '@glimmer/component';
 import type TodosService from 'ember-todomvc/services/todos';
 import type { Todo } from 'ember-todomvc/services/todos';
 
-export interface TodoAppClearCompletedSignature {
+export interface FooterClearCompletedSignature {
   // The arguments accepted by the component
   Args: {
     todos: Todo[];
   };
 }
 
-export default class TodoAppClearCompleted extends Component<TodoAppClearCompletedSignature> {
+export default class FooterClearCompleted extends Component<FooterClearCompletedSignature> {
   @service declare todos: TodosService;
 
   @action
@@ -25,6 +25,6 @@ export default class TodoAppClearCompleted extends Component<TodoAppClearComplet
 
 declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry {
-    'TodoApp::ClearCompleted': typeof TodoAppClearCompleted;
+    'Footer::ClearCompleted': typeof FooterClearCompleted;
   }
 }

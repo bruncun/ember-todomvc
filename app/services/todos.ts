@@ -12,7 +12,7 @@ interface TodoUpdate {
   changes: Partial<Todo>;
 }
 
-type TodoAttributes = Pick<Todo, 'text' | 'isCompleted'> & {
+export type TodoAttributes = Pick<Todo, 'text' | 'isCompleted'> & {
   id?: string;
 };
 

@@ -1,2 +1,22 @@
 {{page-title "Index"}}
-<TodoApp @todos={{this.filteredTodos}} @filter={{this.filter}} />
+<Layout @isTodosEmpty={{this.isTodosEmpty}}>
+  <:header>
+    <Header />
+  </:header>
+  <:main>
+    <Main
+      @isAllTodosCompleted={{this.isAllTodosCompleted}}
+      @todos={{this.filteredTodos}}
+    />
+  </:main>
+  <:footer>
+    <Footer
+      @todos={{@model.todos}}
+      @filter={{this.filter}}
+      @isCompletedTodosEmpty={{this.isCompletedTodosEmpty}}
+    />
+  </:footer>
+  <:info>
+    <Info />
+  </:info>
+</Layout>

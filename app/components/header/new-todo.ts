@@ -5,7 +5,7 @@ import { assert } from '@ember/debug';
 import { service } from '@ember/service';
 import type TodosService from 'ember-todomvc/services/todos';
 
-export default class TodoAppNewTodo extends Component {
+export default class HeaderNewTodo extends Component {
   @service declare todos: TodosService;
   @tracked text: string = '';
 
@@ -37,6 +37,6 @@ export default class TodoAppNewTodo extends Component {
 
 declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry {
-    'TodoApp::NewTodo': typeof TodoAppNewTodo;
+    'Header::NewTodo': typeof HeaderNewTodo;
   }
 }

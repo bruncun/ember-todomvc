@@ -9,14 +9,14 @@ interface Context extends TestContext {
   filter: Filter;
 }
 
-module('Integration | Component | todo-app/footer', function (hooks) {
+module('Integration | Component | footer/filters', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it toggles the selected class on filter links', async function (this: Context, assert) {
     let links, link;
     this.set('filter', 'completed');
 
-    await render<Context>(hbs`<TodoApp::Footer @filter={{this.filter}} />`);
+    await render<Context>(hbs`<Footer::Filters @filter={{this.filter}} />`);
 
     links = findAll('a');
     link = links.find((el) => el.textContent?.trim() === 'Completed');
@@ -25,7 +25,7 @@ module('Integration | Component | todo-app/footer', function (hooks) {
 
     this.set('filter', 'active');
 
-    await render<Context>(hbs`<TodoApp::Footer @filter={{this.filter}} />`);
+    await render<Context>(hbs`<Footer::Filters @filter={{this.filter}} />`);
 
     links = findAll('a');
     link = links.find((el) => el.textContent?.trim() === 'Active');
@@ -34,7 +34,7 @@ module('Integration | Component | todo-app/footer', function (hooks) {
 
     this.set('filter', 'all');
 
-    await render<Context>(hbs`<TodoApp::Footer @filter={{this.filter}} />`);
+    await render<Context>(hbs`<Footer::Filters @filter={{this.filter}} />`);
 
     links = findAll('a');
     link = links.find((el) => el.textContent?.trim() === 'All');

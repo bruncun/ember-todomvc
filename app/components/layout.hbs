@@ -1,0 +1,17 @@
+<section class="todoapp">
+  <header class="header">
+    {{yield to="header"}}
+  </header>
+  {{#unless @isTodosEmpty}}
+    <section class="main">
+      {{yield to="main"}}
+    </section>
+
+    <footer class="footer">
+      {{yield to="footer"}}
+    </footer>
+  {{/unless}}
+</section>
+<footer class="info">
+  {{yield to="info"}}
+</footer>

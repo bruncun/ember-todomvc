@@ -1,0 +1,7 @@
+{{#unless @isCompletedTodosEmpty}}
+  <button
+    class="clear-completed"
+    type="button"
+    {{on "click" this.clearCompleted}}
+  >Clear completed</button>
+{{/unless}}

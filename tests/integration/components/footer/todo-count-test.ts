@@ -6,13 +6,13 @@ import setMockTodos from 'ember-todomvc/tests/helpers/set-mock-todos';
 import type { Context } from 'ember-todomvc/tests/helpers/types';
 import type { Todo } from 'ember-todomvc/services/todos';
 
-module('Integration | Component | todo-app/todo-count', function (hooks) {
+module('Integration | Component | footer/todo-count', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it shows a count of all visible todos', async function (this: Context, assert) {
     setMockTodos(this);
 
-    await render<Context>(hbs`<TodoApp::TodoCount @todos={{this.todos}} />`);
+    await render<Context>(hbs`<Footer::TodoCount @todos={{this.todos}} />`);
 
     assert.dom('.todo-count').hasText('2 items left');
   });
@@ -20,7 +20,7 @@ module('Integration | Component | todo-app/todo-count', function (hooks) {
   test('it pluralizes "item" when more than 1 todo is present', async function (this: Context, assert) {
     setMockTodos(this);
 
-    await render<Context>(hbs`<TodoApp::TodoCount @todos={{this.todos}} />`);
+    await render<Context>(hbs`<Footer::TodoCount @todos={{this.todos}} />`);
 
     assert.dom('.todo-count').hasText('2 items left');
   });
@@ -31,7 +31,7 @@ module('Integration | Component | todo-app/todo-count', function (hooks) {
     ];
     this.set('todos', mockTodo);
 
-    await render<Context>(hbs`<TodoApp::TodoCount @todos={{this.todos}} />`);
+    await render<Context>(hbs`<Footer::TodoCount @todos={{this.todos}} />`);
 
     assert.dom('.todo-count').hasText('1 item left');
   });

@@ -20,4 +20,22 @@ export default class IndexController extends Controller {
       return this.model.todos;
     }
   }
+
+  get isTodosEmpty() {
+    return this.model.todos.length === 0;
+  }
+
+  get isAllTodosCompleted() {
+    const isAllTodosCompleted = this.model.todos.every(
+      ({ isCompleted }) => isCompleted,
+    );
+    return isAllTodosCompleted;
+  }
+
+  get isCompletedTodosEmpty() {
+    const completedTodos = this.model.todos.filter(
+      ({ isCompleted }) => isCompleted,
+    );
+    return completedTodos.length === 0;
+  }
 }

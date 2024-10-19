@@ -5,7 +5,7 @@ import Component from '@glimmer/component';
 import type { Todo } from 'ember-todomvc/services/todos';
 import type TodosService from 'ember-todomvc/services/todos';
 
-export interface TodoAppToggleAllSignature {
+export interface MainToggleAllSignature {
   // The arguments accepted by the component
   Args: {
     isAllTodosCompleted: boolean;
@@ -13,7 +13,7 @@ export interface TodoAppToggleAllSignature {
   };
 }
 
-export default class TodoAppToggleAll extends Component<TodoAppToggleAllSignature> {
+export default class MainToggleAll extends Component<MainToggleAllSignature> {
   @service declare todos: TodosService;
 
   @action
@@ -38,6 +38,6 @@ export default class TodoAppToggleAll extends Component<TodoAppToggleAllSignatur
 
 declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry {
-    'TodoApp::ToggleAll': typeof TodoAppToggleAll;
+    'Main::ToggleAll': typeof MainToggleAll;
   }
 }

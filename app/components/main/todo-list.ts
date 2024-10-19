@@ -3,13 +3,13 @@ import Component from '@glimmer/component';
 import type { Todo } from 'ember-todomvc/services/todos';
 import { tracked } from 'tracked-built-ins';
 
-export interface TodoAppTodoListSignature {
+export interface MainTodoListSignature {
   Args: {
     todos: Todo[];
   };
 }
 
-export default class TodoAppTodoList extends Component<TodoAppTodoListSignature> {
+export default class MainTodoList extends Component<MainTodoListSignature> {
   @tracked editing: null | string = null;
 
   @action
@@ -20,6 +20,6 @@ export default class TodoAppTodoList extends Component<TodoAppTodoListSignature>
 
 declare module '@glint/environment-ember-loose/registry' {
   export default interface Registry {
-    'TodoApp::TodoList': typeof TodoAppTodoList;
+    'Main::TodoList': typeof MainTodoList;
   }
 }
